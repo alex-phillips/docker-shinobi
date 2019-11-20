@@ -1,0 +1,32 @@
+{
+  "port": 9001,
+  "passwordType": "sha256",
+  "detectorMergePamRegionTriggers": true,
+  "addStorage": [
+    {
+      "name": "second",
+      "path": "__DIR__/videos2"
+    }
+  ],
+  "databaseType": "sqlite3",
+  "db": {
+    "filename": "/data/db.sqlite",
+    "host": "127.0.0.1",
+    "user": "majesticflame",
+    "password": "",
+    "database": "ccio",
+    "port": 3306
+  },
+  "mail": {
+    "service": "gmail",
+    "auth": {
+      "user": "your_email@gmail.com",
+      "pass": "your_password_or_app_specific_password"
+    }
+  },
+  "cron": {
+    "key": "{{CRON_KEY}}"
+  },
+  "pluginKeys": {},
+  "databaseType": "sqlite3"
+}

@@ -1,0 +1,30 @@
+#!/usr/bin/with-contenv bash
+
+mkdir -p /{config,data}
+
+if [ ! -f "/config/conf.json" ]; then
+    cp /defaults/conf.json /config/conf.json
+    CRON_KEY=$(date +%s | sha256sum | base64 | head -c 32)
+	sed -i 's|{{CRON_KEY}}|'${CRON_KEY}'|g' /config/conf.json
+fi
+
+if [ ! -f "/config/super.json" ]; then
+    cp /app/shinobi/super.sample.json /config/super.json
+fi
+
+if [ ! -f "/data/db.sqlite" ]; then
+    cp /app/shinobi/sql/shinobi.sample.sqlite /data/db.sqlite
+fi
+
+mkdir -p /data/videos
+rm -rf /app/shinobi/videos
+ln -sf /data/videos /app/shinobi/videos
+
+ln -sf /config/super.json /app/shinobi/super.json
+ln -sf /config/conf.json /app/shinobi/conf.json
+
+# permissions
+chown -R abc:abc \
+	/app/shinobi \
+	/config \
+    /data
