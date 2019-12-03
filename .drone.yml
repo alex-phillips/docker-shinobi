@@ -18,7 +18,3 @@ steps:
     password:
       from_secret: docker_password
     repo: alexphillips/shinobi
-  when:
-    event:
-    - push
-    - tag
